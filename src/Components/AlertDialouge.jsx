@@ -1,14 +1,14 @@
 'use client'
-import { deleteUser } from '@/app/lib/actions';
+
 import { AlertDialog, Button } from '@heroui/react';
 import React from 'react';
 
-const AlertDialougeComponent = ({user}) => {
+const AlertDialougeComponent = ({user, deleteUserAction}) => {
 
-    const handleDelete = async(userId)=>{
+  const handleDelete = async(userId)=>{
+    await deleteUserAction(userId);
 
-        const deleteUser = await deleteUser()
-    }
+  }
 
 
     return (

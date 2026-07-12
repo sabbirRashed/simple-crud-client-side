@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import AlertDialougeComponent from './AlertDialouge';
 
-const UsersTable = ({ users }) => {
+const UsersTable = ({ users, deleteUserAction }) => {
     return (
         <div className='mt-6'>
             <Table>
@@ -35,7 +35,7 @@ const UsersTable = ({ users }) => {
                                                 </Link>
 
                                                
-                                                    <AlertDialougeComponent user={user}></AlertDialougeComponent>
+                                                    <AlertDialougeComponent user={user} deleteUserAction={deleteUserAction}></AlertDialougeComponent>
                                              
                                             </Table.Cell>
                                         </Table.Row>
