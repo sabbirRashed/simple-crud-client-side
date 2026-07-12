@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import AlertDialougeComponent from './AlertDialouge';
 
+
 const UsersTable = ({ users, deleteUserAction }) => {
     return (
         <div className='mt-6'>
@@ -27,16 +28,17 @@ const UsersTable = ({ users, deleteUserAction }) => {
                                             <Table.Cell>{user.email}</Table.Cell>
                                             <Table.Cell className='space-x-2 flex items-center'>
                                                 <Link href={`/users/${user._id}`}>
-                                                    <Button variant="outline">Details</Button>
+                                                    <Button variant="secondary">Details</Button>
                                                 </Link>
 
                                                 <Link href={`/users/${''}`}>
-                                                    <Button variant="outline">Edit</Button>
+                                                    <Button variant="secondary">Edit</Button>
                                                 </Link>
 
-                                               
-                                                    <AlertDialougeComponent user={user} deleteUserAction={deleteUserAction}></AlertDialougeComponent>
-                                             
+                                                <AlertDialougeComponent user={user} deleteUserAction={deleteUserAction}></AlertDialougeComponent>
+
+                                                
+
                                             </Table.Cell>
                                         </Table.Row>
                                     )
