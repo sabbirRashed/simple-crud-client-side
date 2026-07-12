@@ -1,6 +1,7 @@
 import { Button, Table } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
+import AlertDialougeComponent from './AlertDialouge';
 
 const UsersTable = ({ users }) => {
     return (
@@ -24,7 +25,7 @@ const UsersTable = ({ users }) => {
                                             <Table.Cell>{user.role}</Table.Cell>
                                             <Table.Cell>Active</Table.Cell>
                                             <Table.Cell>{user.email}</Table.Cell>
-                                            <Table.Cell className='space-x-2'>
+                                            <Table.Cell className='space-x-2 flex items-center'>
                                                 <Link href={`/users/${user._id}`}>
                                                     <Button variant="outline">Details</Button>
                                                 </Link>
@@ -33,9 +34,9 @@ const UsersTable = ({ users }) => {
                                                     <Button variant="outline">Edit</Button>
                                                 </Link>
 
-                                                <Link href={`/users/${''}`}>
-                                                    <Button variant="danger">Delete</Button>
-                                                </Link>
+                                               
+                                                    <AlertDialougeComponent user={user}></AlertDialougeComponent>
+                                             
                                             </Table.Cell>
                                         </Table.Row>
                                     )
