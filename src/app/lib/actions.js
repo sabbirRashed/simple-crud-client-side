@@ -12,8 +12,9 @@ export const createUser = async (formData) => {
         },
         body: JSON.stringify(newUser)
     })
+
     const data = await res.json();
-    console.log('data after post', data);
+    // console.log('data after post', data);
 
     if (data.insertedId) {
         revalidatePath('/users')
@@ -23,14 +24,34 @@ export const createUser = async (formData) => {
 
 }
 
+export const updateUser = async(formData, userId) =>{
+    'use server' 
+    const updatedUser = Object.fromEntries(formData.entries());
+    console.log('updated user', updateUser);
+
+    const res = await fetch(`http://localhost:5000/users/${userId}`, {
+        method: 'PATCH',
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(updatedUser)
+    })
+
+    const data = await res.json();
+    console.log('after updating data:', data);
+
+    // TO DO: REVALIDATE PATH
+    return data;
+}
+
 export const deleteUser = async (userId) => {
     'use server'
 
     const res = await fetch(`http://localhost:5000/users/${userId}`, {
         method: 'DELETE'
     })
-    const data = await res.json();
 
+    const data = await res.json();
     console.log('after delete-->', data);
 
     if (data.deletedCount > 0) {

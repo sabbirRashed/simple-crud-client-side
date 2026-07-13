@@ -1,7 +1,9 @@
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react';
 import React from 'react';
 
-const CreateUser = ({ createUserAction}) => {
+const CreateUser = async({ createUserAction}) => {
+
+
     return (
         <div>
             <Modal>
