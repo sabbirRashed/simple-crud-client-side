@@ -9,7 +9,7 @@ const UsersTable = ({ users, deleteUserAction }) => {
         <div className='mt-6'>
             <Table>
                 <Table.ScrollContainer>
-                    <Table.Content aria-label="Team members" className="min-w-[600px]">
+                    <Table.Content aria-label="Team members" className="min-w-150">
                         <Table.Header>
                             <Table.Column isRowHeader>Name</Table.Column>
                             <Table.Column>Role</Table.Column>
