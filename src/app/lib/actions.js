@@ -1,9 +1,10 @@
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const createUser = async (formData) => {
     'use server'
     const newUser = Object.fromEntries(formData.entries());
-    console.log('new user data', newUser);
+    // console.log('new user data', newUser);
 
     const res = await fetch('http://localhost:5000/users', {
         method: 'POST',
@@ -14,7 +15,7 @@ export const createUser = async (formData) => {
     })
 
     const data = await res.json();
-    // console.log('data after post', data);
+    console.log('data after post', data);
 
     if (data.insertedId) {
         revalidatePath('/users')
@@ -24,15 +25,15 @@ export const createUser = async (formData) => {
 
 }
 
-export const updateUser = async(formData, userId) =>{
-    'use server' 
+export const updateUser = async (userId, formData) => {
+    'use server'
     const updatedUser = Object.fromEntries(formData.entries());
-    console.log('updated user', updateUser);
+    console.log('updated user', updatedUser);
 
     const res = await fetch(`http://localhost:5000/users/${userId}`, {
         method: 'PATCH',
-        headers:{
-            'Content-Type' : 'application/json'
+        headers: {
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(updatedUser)
     })
@@ -40,7 +41,10 @@ export const updateUser = async(formData, userId) =>{
     const data = await res.json();
     console.log('after updating data:', data);
 
-    // TO DO: REVALIDATE PATH
+    if (data.modifiedCount > 0) {
+        revalidatePath('/users');
+        redirect('/users')
+    }
     return data;
 }
 

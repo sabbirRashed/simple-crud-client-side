@@ -9,7 +9,8 @@ const EditPage = async ({ params }) => {
     const user = await getUserById(userId);
     // console.log('editing user', user);
 
-    const handleUpdateUser = (formData)=>{
+    const handleUpdateUser = async(formData)=>{
+        'use server'
         return updateUser(userId, formData)
     }
 
